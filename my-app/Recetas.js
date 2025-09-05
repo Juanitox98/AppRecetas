@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, ActivityIndicator, StyleSheet, Image } from 'react-native';
+import { View, Text, FlatList, ActivityIndicator, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
-export default function Recetas({ route }) {
+export default function Recetas({ route, navigation }) {
   const { category } = route.params;
   const [loading, setLoading] = useState(true);
   const [meals, setMeals] = useState([]);
@@ -16,18 +16,28 @@ export default function Recetas({ route }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Recetas de {category}</Text>
+      {/* Header */}
+      <View style={styles.headerRow}>
+        <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+          <Text style={styles.backButtonText}>🡰</Text>
+        </TouchableOpacity>
+        <Text style={styles.header}>Recetas de {category}</Text>
+      </View>
+
       {loading ? (
-        <ActivityIndicator size="large" color="blue" />
+        <ActivityIndicator size="large" color="#e67e22" />
       ) : (
         <FlatList
           data={meals}
           keyExtractor={item => item.idMeal}
           renderItem={({ item }) => (
-            <View style={styles.card}>
+            <TouchableOpacity
+              style={styles.card}
+              onPress={() => navigation.navigate('DetalleReceta', { idMeal: item.idMeal })}
+            >
               <Image source={{ uri: item.strMealThumb }} style={styles.image} />
               <Text style={styles.title}>{item.strMeal}</Text>
-            </View>
+            </TouchableOpacity>
           )}
         />
       )}
@@ -36,9 +46,55 @@ export default function Recetas({ route }) {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20, backgroundColor: '#f2f2f2' },
-  header: { fontSize: 22, fontWeight: 'bold', marginBottom: 15, textAlign: 'center' },
-  card: { backgroundColor: '#fff', marginBottom: 15, borderRadius: 10, padding: 10, alignItems: 'center' },
-  image: { width: '100%', height: 200, borderRadius: 10, marginBottom: 10 },
-  title: { fontSize: 18, fontWeight: 'bold', textAlign: 'center' },
+  container: { 
+    flex: 1, 
+    padding: 20, 
+    backgroundColor: '#fffbe6' 
+  },
+  headerRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  backButton: {
+    backgroundColor: '#fffbe6',
+    padding: 8,
+    borderRadius: 8,
+    marginRight: 10,
+  },
+  backButtonText: {
+    color: '#000000ff',
+    fontSize: 16,
+  },
+  header: { 
+    fontSize: 24, 
+    fontWeight: 'bold', 
+    color: '#e67e22', 
+    flex: 1, 
+    textAlign: 'center',
+  },
+  card: { 
+    backgroundColor: '#fff', 
+    marginBottom: 15, 
+    borderRadius: 12, 
+    padding: 10, 
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 5,
+    elevation: 3,
+  },
+  image: { 
+    width: '100%', 
+    height: 200, 
+    borderRadius: 10, 
+    marginBottom: 10 
+  },
+  title: { 
+    fontSize: 18, 
+    fontWeight: 'bold', 
+    color: '#333', 
+    textAlign: 'center' 
+  },
 });

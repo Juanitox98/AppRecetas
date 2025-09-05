@@ -15,9 +15,9 @@ export default function Principal({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Categorías de Recetas</Text>
+      <Text style={styles.header}>🍽️ Categorías de Recetas</Text>
       {loading ? (
-        <ActivityIndicator size="large" color="blue" />
+        <ActivityIndicator size="large" color="#27ae60" /> 
       ) : (
         <FlatList
           data={categories}
@@ -38,17 +38,40 @@ export default function Principal({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20, backgroundColor: '#f2f2f2' },
-  header: { fontSize: 24, fontWeight: 'bold', textAlign: 'center', marginBottom: 20 },
+  container: { 
+    flex: 1, 
+    padding: 20, 
+    backgroundColor: '#fffbe6' 
+  },
+  header: { 
+    fontSize: 24, 
+    fontWeight: 'bold', 
+    textAlign: 'center', 
+    marginBottom: 20, 
+    color: '#e67e22' 
+  },
   item: {
-    flexDirection: 'row',        // 👈 Imagen y texto en la misma fila
+    flexDirection: 'row',
     alignItems: 'center',
     padding: 15,
     backgroundColor: '#fff',
-    marginBottom: 10,
-    borderRadius: 10,
-    elevation: 2,
+    marginBottom: 12,
+    borderRadius: 12,
+    elevation: 3,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
   },
-  image: { width: 60, height: 60, borderRadius: 8, marginRight: 15 },
-  itemText: { fontSize: 18, fontWeight: 'bold' },
+  image: { 
+    width: 60, 
+    height: 60, 
+    borderRadius: 8, 
+    marginRight: 15 
+  },
+  itemText: { 
+    fontSize: 18, 
+    fontWeight: 'bold', 
+    color: '#2c3e50' // gris oscuro elegante
+  },
 });
