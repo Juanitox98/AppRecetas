@@ -66,13 +66,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center', 
     alignItems: 'center', 
     padding: 20, 
-    backgroundColor: '#fffbe6' // 🍋 Fondo suave tipo crema
+    backgroundColor: '#fffbe6' 
   },
   title: { 
     fontSize: 28, 
     fontWeight: 'bold', 
     marginBottom: 40, 
-    color: '#e67e22' // 🥕 Naranja cálido
+    color: '#e67e22' 
   },
   input: { 
     width: '100%', 
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff' 
   },
   button: { 
-    backgroundColor: '#27ae60', // 🥦 Verde fresco
+    backgroundColor: '#27ae60', 
     padding: 15, 
     borderRadius: 10, 
     width: '100%', 

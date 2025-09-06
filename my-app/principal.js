@@ -72,6 +72,6 @@ const styles = StyleSheet.create({
   itemText: { 
     fontSize: 18, 
     fontWeight: 'bold', 
-    color: '#2c3e50' // gris oscuro elegante
+    color: '#2c3e50' 
   },
 });
