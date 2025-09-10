@@ -3,7 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-nativ
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Principal from './principal';
-import Recetas from './recetas';
+import Recetas from './Recetas';
 import DetalleReceta from './detalleReceta';
 
 const Stack = createNativeStackNavigator();
