@@ -16,8 +16,17 @@ export default function Principal({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.header}>🍽️ Categorías de Recetas</Text>
+      
+      {/* Botón para ir a MisRecetas */}
+      <TouchableOpacity
+        style={styles.misRecetasButton} // Estilo personalizado para el botón
+        onPress={() => navigation.navigate('MisRecetas')} // Navegar a la pantalla MisRecetas
+      >
+        <Text style={styles.misRecetasButtonText}>Mis Recetas</Text>
+      </TouchableOpacity>
+
       {loading ? (
-        <ActivityIndicator size="large" color="#27ae60" /> 
+        <ActivityIndicator size="large" color="#27ae60" />
       ) : (
         <FlatList
           data={categories}
@@ -74,4 +83,22 @@ const styles = StyleSheet.create({
     fontWeight: 'bold', 
     color: '#2c3e50' 
   },
+  // Estilo para el botón "Mis Recetas"
+  misRecetasButton: {
+    padding: 15,
+    backgroundColor: '#3498db', // Color azul, complementario al color naranja de los items
+    marginBottom: 20,
+    borderRadius: 12,
+    elevation: 3,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+  },
+  misRecetasButtonText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#fff', // Color blanco para el texto
+    textAlign: 'center',
+  }
 });

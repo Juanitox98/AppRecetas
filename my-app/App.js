@@ -5,6 +5,10 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Principal from './principal';
 import Recetas from './Recetas';
 import DetalleReceta from './detalleReceta';
+// import MisRecetas from './misRecetas';
+import { createStackNavigator } from '@react-navigation/stack';
+import UserListScreen from './UserListScreen';
+import FormReceta from './formReceta';
 
 const Stack = createNativeStackNavigator();
 
@@ -55,6 +59,11 @@ export default function App() {
         <Stack.Screen name="Principal" component={Principal} />
         <Stack.Screen name="Recetas" component={Recetas} />
         <Stack.Screen name="DetalleReceta" component={DetalleReceta} />
+        <Stack.Screen name="MisRecetas" component={UserListScreen} options={{ title: 'Usuarios' }} />
+        <Stack.Screen name="UserList" component={UserListScreen} options={{ title: 'Usuarios' }} />
+        <Stack.Screen name="FormReceta" component={FormReceta} options={{ title: 'Añadir Receta' }}/>
+        
+
       </Stack.Navigator>
     </NavigationContainer>
   );
