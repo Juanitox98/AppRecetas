@@ -1,99 +1,107 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, ScrollView, Alert } from 'react-native';
-import { addReceta } from './UserService';
+import React from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
-export default function FormularioReceta({ navigation }) {
-  const [nombre, setNombre] = useState('');
-  const [categoria, setCategoria] = useState('');
-  const [instrucciones, setInstrucciones] = useState('');
-  const [imagen, setImagen] = useState('');
-
-  const handleGuardar = async () => {
-    if (!nombre || !categoria || !instrucciones) {
-      Alert.alert('Error', 'Por favor completa todos los campos obligatorios');
-      return;
-    }
-
-    try {
-      await addReceta({
-        nombre,
-        categoria,
-        instrucciones,
-        imagen,
-        createdAt: new Date()
-      });
-      Alert.alert('Receta guardada', `Has guardado la receta: ${nombre}`);
-
-      // Limpiar campos (opcional, porque ya navegas)
-      setNombre('');
-      setCategoria('');
-      setInstrucciones('');
-      setImagen('');
-
-      navigation.navigate('MisRecetas');
-    } catch (error) {
-      console.error("Error guardando receta:", error);
-      Alert.alert('Error', 'No se pudo guardar la receta. Intenta más tarde.');
-    }
-  };
-
+export default function MisRecetas({ navigation }) {
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>➕ Añadir Receta</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>📖 Mis Recetas</Text>
 
-      <TextInput
-        style={styles.input}
-        placeholder="Nombre de la receta *"
-        value={nombre}
-        onChangeText={setNombre}
-      />
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        {/* Botón de retroceso - Mismo estilo que en FormReceta */}
+        <TouchableOpacity 
+          style={styles.backButton} 
+          onPress={() => navigation.navigate('Principal')}
+        >
+          <Text style={styles.backButtonText}>⬅</Text>
+        </TouchableOpacity>
 
-      <TextInput
-        style={styles.input}
-        placeholder="Categoría *"
-        value={categoria}
-        onChangeText={setCategoria}
-      />
+        <View style={styles.card}>
+          <Text style={styles.cardTitle}>POLLO</Text>
+          <Text style={styles.cardSubtitle}>POLLOS</Text>
+        </View>
 
-      <TextInput
-        style={[styles.input, { height: 100 }]}
-        placeholder="Instrucciones *"
-        value={instrucciones}
-        onChangeText={setInstrucciones}
-        multiline
-      />
+        <View style={styles.card}>
+          <Text style={styles.cardTitle}>jsjsks</Text>
+          <Text style={styles.cardSubtitle}>laskdak</Text>
+        </View>
 
-      <TextInput
-        style={styles.input}
-        placeholder="URL de imagen (opcional)"
-        value={imagen}
-        onChangeText={setImagen}
-      />
+        <View style={styles.card}>
+          <Text style={styles.cardTitle}>skdskds</Text>
+          <Text style={styles.cardSubtitle}>zxlxzkzx</Text>
+        </View>
 
-      <Button title="Guardar Receta" onPress={handleGuardar} color="#27ae60" />
-    </ScrollView>
+        <View style={styles.card}>
+          <Text style={styles.cardTitle}>sjsjsj</Text>
+          <Text style={styles.cardSubtitle}>slslk</Text>
+        </View>
+      </ScrollView>
+
+      <TouchableOpacity 
+        style={styles.addButton} 
+        onPress={() => navigation.navigate('FormularioReceta')}
+      >
+        <Text style={styles.addButtonText}>➕ Añadir Receta</Text>
+      </TouchableOpacity>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
+    flex: 1,
     backgroundColor: '#fffbe6',
-    flexGrow: 1,
   },
   title: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: 'bold',
-    color: '#e67e22',
-    marginBottom: 20,
     textAlign: 'center',
+    color: '#e67e22',
+    marginTop: 15,
+    marginBottom: 10,
   },
-  input: {
+  scrollContainer: {
+    padding: 20,
+    paddingTop: 0,
+  },
+  backButton: {
+    alignSelf: 'flex-start',
+    marginBottom: 10,
+  },
+  backButtonText: {
+    fontSize: 22,
+    color: '#34495e',
+    fontWeight: 'bold',
+  },
+  card: {
     backgroundColor: '#fff',
-    padding: 12,
+    padding: 15,
     borderRadius: 10,
-    borderColor: '#ccc',
-    borderWidth: 1,
     marginBottom: 15,
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  cardTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#2c3e50',
+  },
+  cardSubtitle: {
+    fontSize: 14,
+    color: '#7f8c8d',
+  },
+  addButton: {
+    backgroundColor: '#27ae60',
+    padding: 15,
+    margin: 20,
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  addButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
