@@ -1,14 +1,5 @@
 import React, { useState } from 'react';
-import { 
-  View, 
-  Text, 
-  TextInput, 
-  Button, 
-  StyleSheet, 
-  ScrollView, 
-  Alert, 
-  TouchableOpacity 
-} from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, ScrollView, Alert,TouchableOpacity } from 'react-native';
 import { addReceta } from './UserService';
 
 export default function FormReceta({ navigation }) {
@@ -53,14 +44,14 @@ export default function FormReceta({ navigation }) {
   };
 
   const handleRemoveIngrediente = (index) => {
-    if (ingredientes.length === 1) return; // no permitir eliminar si solo queda 1
+    if (ingredientes.length === 1) return; 
     const nuevos = ingredientes.filter((_, i) => i !== index);
     setIngredientes(nuevos);
   };
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      {/* Botón de retroceso */}
+      
       <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
         <Text style={styles.backButtonText}>⬅</Text>
       </TouchableOpacity>
@@ -96,7 +87,7 @@ export default function FormReceta({ navigation }) {
         onChangeText={setImagen}
       />
 
-      {/* Ingredientes */}
+      
       <Text style={styles.label}>Ingredientes</Text>
       {ingredientes.map((ingrediente, index) => (
         <View key={index} style={styles.ingredienteRow}>
@@ -106,13 +97,13 @@ export default function FormReceta({ navigation }) {
             value={ingrediente}
             onChangeText={(text) => handleChangeIngrediente(text, index)}
           />
-          {/* Botón para añadir ingrediente solo en el último campo */}
+          
           {index === ingredientes.length - 1 && (
             <TouchableOpacity style={styles.addButtonSmall} onPress={handleAddIngrediente}>
               <Text style={styles.addButtonText}>➕</Text>
             </TouchableOpacity>
           )}
-          {/* Botón para eliminar ingrediente */}
+          
           {ingredientes.length > 1 && (
             <TouchableOpacity style={styles.removeButton} onPress={() => handleRemoveIngrediente(index)}>
               <Text style={styles.removeButtonText}>✖</Text>

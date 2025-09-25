@@ -3,9 +3,8 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-nativ
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Principal from './principal';
-import Recetas from './Recetas';
+import Recetas from './recetas';
 import DetalleReceta from './detalleReceta';
-// import MisRecetas from './misRecetas';
 import { createStackNavigator } from '@react-navigation/stack';
 import UserListScreen from './UserListScreen';
 import FormReceta from './formReceta';

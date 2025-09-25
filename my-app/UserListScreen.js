@@ -1,13 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import {
-  View,
-  Text,
-  FlatList,
-  TouchableOpacity,
-  StyleSheet,
-  ActivityIndicator,
-  Image
-} from 'react-native';
+import {View,Text,FlatList,TouchableOpacity,StyleSheet,ActivityIndicator,Image} from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import { getRecetas } from './UserService';
 
@@ -62,12 +54,20 @@ export default function UserListScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigation.navigate('Principal')}>
+          <Text style={styles.backButton}>⬅</Text>
+        </TouchableOpacity>
+        <Text style={styles.title}>📖 Mis Recetas</Text>
+      </View>
+
       <FlatList
         data={recetas}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
         refreshing={loading}
         onRefresh={loadRecetas}
+        contentContainerStyle={{ paddingTop: 10 }}
       />
 
       <TouchableOpacity
@@ -82,6 +82,23 @@ export default function UserListScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 10, backgroundColor: '#fffbe6' },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 15,
+  },
+  backButton: {
+    fontSize: 24,
+    color: '#34495e',
+    marginRight: 10,
+  },
+  title: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: '#e67e22',
+    textAlign: 'center',
+    flex: 1, 
+  },
   item: {
     flexDirection: 'row',
     padding: 15,

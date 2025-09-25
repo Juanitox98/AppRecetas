@@ -17,10 +17,10 @@ export default function Principal({ navigation }) {
     <View style={styles.container}>
       <Text style={styles.header}>🍽️ Categorías de Recetas</Text>
       
-      {/* Botón para ir a MisRecetas */}
+      
       <TouchableOpacity
-        style={styles.misRecetasButton} // Estilo personalizado para el botón
-        onPress={() => navigation.navigate('MisRecetas')} // Navegar a la pantalla MisRecetas
+        style={styles.misRecetasButton} 
+        onPress={() => navigation.navigate('MisRecetas')} 
       >
         <Text style={styles.misRecetasButtonText}>Mis Recetas</Text>
       </TouchableOpacity>
@@ -83,10 +83,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold', 
     color: '#2c3e50' 
   },
-  // Estilo para el botón "Mis Recetas"
+  
   misRecetasButton: {
     padding: 15,
-    backgroundColor: '#3498db', // Color azul, complementario al color naranja de los items
+    backgroundColor: '#3498db', 
     marginBottom: 20,
     borderRadius: 12,
     elevation: 3,
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
   misRecetasButtonText: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#fff', // Color blanco para el texto
+    color: '#fff', 
     textAlign: 'center',
   }
 });
